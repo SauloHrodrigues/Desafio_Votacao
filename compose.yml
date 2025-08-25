@@ -10,7 +10,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
 
   postgres:
-    image: postgres
+    image: postgres:16.9
     container_name: containe-db-votacao
     ports:
       - "5433:5432"
