@@ -1,4 +1,4 @@
-package com.db.votacao.desafio_votacao.associado.service;
+package com.db.votacao.desafio_votacao.service;
 
 import com.db.votacao.desafio_votacao.auxiliares.fixtures.AssociadoFixture;
 import com.db.votacao.desafio_votacao.dtos.associado.AssociadoAtualizaDto;

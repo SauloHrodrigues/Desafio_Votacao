@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class AssociadoServiceImpl implements AssociadoService {
 
     private final AssociadoRepository repository;
-    private AssociadoMapper mapper = AssociadoMapper.INSTANCE;
+    private AssociadoMapper mapper= AssociadoMapper.INSTANCE;
 
     @Override
     public AssociadoResponseDto criarAssociado(AssociadoRequestDto dto) {

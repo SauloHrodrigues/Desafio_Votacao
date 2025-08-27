@@ -36,4 +36,18 @@ public class AssociadoFixture {
                 associado.getId(), associado.getNome(), associado.getDocumento()
         );
     }
+    public static AssociadoResponseDto responseDto(Associado associado, AssociadoAtualizaDto atualizacoes){
+        String nome = associado.getNome();
+        String documento = associado.getDocumento();
+
+        if(atualizacoes.nome() != null){
+            nome = atualizacoes.nome();
+        }
+        if(atualizacoes.documento() != null){
+            documento = atualizacoes.documento();
+        }
+
+        return new AssociadoResponseDto(
+                associado.getId(), nome, documento);
+    }
 }
