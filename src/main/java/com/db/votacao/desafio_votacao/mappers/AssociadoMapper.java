@@ -17,6 +17,7 @@ public interface AssociadoMapper {
 
     AssociadoMapper INSTANCE = Mappers.getMapper(AssociadoMapper.class);
 
+    @Mapping(target = "nome", expression = "java(dto.nome() != null ? dto.nome().toLowerCase() : null)")
     Associado toEntity(AssociadoRequestDto dto);
 
     AssociadoResponseDto toResponse(Associado associado);
