@@ -2,6 +2,8 @@ package com.db.votacao.desafio_votacao.exceptions;
 
 import com.db.votacao.desafio_votacao.exceptions.associados.AssociadoJaExistenteException;
 import com.db.votacao.desafio_votacao.exceptions.associados.AssociadoNaoExistenteException;
+import com.db.votacao.desafio_votacao.exceptions.pautas.PautaInexistenteException;
+import com.db.votacao.desafio_votacao.exceptions.pautas.PautaJaExistenteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -20,6 +22,15 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Erro! ", exception.getMessage()));
     }
 
+    @ExceptionHandler(PautaInexistenteException.class)
+    public ResponseEntity<Object> handlerPautaInexistenteException(PautaInexistenteException exception){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorResponse("Erro! ", exception.getMessage()));
+    }
+
+    @ExceptionHandler(PautaJaExistenteException.class)
+    public ResponseEntity<Object> handlerPautaJaExistenteException(PautaJaExistenteException exception){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("Erro! ", exception.getMessage()));
+    }
 
 
 //    ************************************************************************

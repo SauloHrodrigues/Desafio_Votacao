@@ -4,9 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 @Entity
@@ -19,4 +24,8 @@ public class Associado {
     private Long id;
     private String nome;
     private String documento;
+
+    @Setter(value = AccessLevel.PRIVATE)
+    @OneToMany(mappedBy = "associado")
+    private List<Voto> votos = new ArrayList<>();
 }
