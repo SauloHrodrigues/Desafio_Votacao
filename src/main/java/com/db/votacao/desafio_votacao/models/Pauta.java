@@ -16,35 +16,46 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "pautas")
 public class Pauta {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private @NonNull String titulo;
-    private @NonNull String autor;
-    private @NonNull String descricao;
+
+    @NonNull
+    private String titulo;
+
+    @NonNull
+    private String autor;
+
+    @NonNull
+    private String descricao;
+
+    @Builder.Default
     private LocalDateTime dataDeCadastro = LocalDateTime.now();
 
-    @Setter(value = AccessLevel.PRIVATE)
+    @Setter(AccessLevel.PRIVATE)
+    @Builder.Default
     @OneToMany(mappedBy = "pauta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @MapKeyColumn(name = "id")
     @JsonIgnore
     private List<Voto> votos = new ArrayList<>();
 
-    public void adicionarVoto(Voto voto){
+    public void adicionarVoto(Voto voto) {
         votos.add(voto);
     }
 
@@ -63,14 +74,14 @@ public class Pauta {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Pauta pauta)) return false;
-        return Objects.equals(getId(), pauta.getId()) && Objects.equals(getTitulo(), pauta.getTitulo()) && Objects.equals(getDescricao(), pauta.getDescricao()) && Objects.equals(getDataDeCadastro(), pauta.getDataDeCadastro());
+        return Objects.equals(getId(), pauta.getId()) &&
+                Objects.equals(getTitulo(), pauta.getTitulo()) &&
+                Objects.equals(getDescricao(), pauta.getDescricao()) &&
+                Objects.equals(getDataDeCadastro(), pauta.getDataDeCadastro());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getTitulo(), getDescricao(), getDataDeCadastro());
     }
-
-
-
 }

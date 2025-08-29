@@ -17,9 +17,11 @@ import org.mapstruct.factory.Mappers;
 public interface PautaMapper {
 
     PautaMapper INSTANCE = Mappers.getMapper(PautaMapper.class);
-
-    @Mapping(target = "titulo", expression = "java(dto.autor() != null ? dto.titulo().toLowerCase() : null)")
-    @Mapping(target = "autor", expression = "java(dto.titulo() != null ? dto.autor().toLowerCase() : null)")
+    @Mapping(target = "titulo", expression = "java(dto.titulo() != null ? dto.titulo().toLowerCase() : null)")
+    @Mapping(target = "autor", expression = "java(dto.autor() != null ? dto.autor().toLowerCase() : null)")
+    @Mapping(target = "descricao", expression = "java(dto.descricao() != null ? dto.descricao() : null)")
+    @Mapping(target = "votos", ignore = true)
+    @Mapping(target = "dataDeCadastro", ignore = true)
     Pauta toEntity(PautaRequesteDto dto);
 
     PautaResponseDto toResponse(Pauta pauta);

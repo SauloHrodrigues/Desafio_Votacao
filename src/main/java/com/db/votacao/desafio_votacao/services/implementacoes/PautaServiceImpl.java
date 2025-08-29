@@ -28,7 +28,6 @@ public class PautaServiceImpl implements PautaService {
     public PautaResponseDto criarPauta(PautaRequesteDto dto) {
         validaPautaInexistente(dto.titulo(), dto.autor());
         Pauta pauta = repository.save(mapper.toEntity(dto));
-        System.out.println(pauta.getDataDeCadastro());
         return mapper.toResponse(pauta);
     }
 
@@ -40,7 +39,9 @@ public class PautaServiceImpl implements PautaService {
 
     @Override
     public PautaResponseDto buscarPautaPorId(Long id) {
-        return buscarPautaPorId(id);
+        Pauta pauta = buscaPauta(id);
+        PautaResponseDto responseDto = mapper.toResponse(pauta);
+        return responseDto;
     }
 
     @Override
