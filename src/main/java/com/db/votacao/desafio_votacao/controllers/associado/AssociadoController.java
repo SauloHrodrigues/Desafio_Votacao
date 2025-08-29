@@ -1,5 +1,6 @@
 package com.db.votacao.desafio_votacao.controllers.associado;
 
+import com.db.votacao.desafio_votacao.controllers.anotacoes_swagger.AssociadoControllerSwager;
 import com.db.votacao.desafio_votacao.dtos.associado.AssociadoAtualizaDto;
 import com.db.votacao.desafio_votacao.dtos.associado.AssociadoRequestDto;
 import com.db.votacao.desafio_votacao.dtos.associado.AssociadoResponseDto;
@@ -24,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/associado")
-public class AssociadoController {
+public class AssociadoController implements AssociadoControllerSwager {
 
     private final AssociadoService service;
 

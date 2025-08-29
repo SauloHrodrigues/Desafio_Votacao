@@ -1,5 +1,6 @@
 package com.db.votacao.desafio_votacao.controllers.pauta;
 
+import com.db.votacao.desafio_votacao.controllers.anotacoes_swagger.PautaControllerSwager;
 import com.db.votacao.desafio_votacao.dtos.pauta.PautaAtualizarRequestDto;
 import com.db.votacao.desafio_votacao.dtos.pauta.PautaRequesteDto;
 import com.db.votacao.desafio_votacao.dtos.pauta.PautaResponseDto;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/pauta")
-public class PautaController {
+public class PautaController implements PautaControllerSwager {
 
     private final PautaService service;
     @PostMapping
