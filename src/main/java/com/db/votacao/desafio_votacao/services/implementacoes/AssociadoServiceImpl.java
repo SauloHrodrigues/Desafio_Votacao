@@ -38,12 +38,12 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     @Override
     public AssociadoResponseDto buscaAssociadoPorId(Long id) {
-        return mapper.toResponse(validaAssociadoExistente(id));
+        return mapper.toResponse(buscaAssociadoExistente(id));
     }
 
     @Override
     public AssociadoResponseDto atualizaDadosAssociado(Long id,AssociadoAtualizaDto dto) {
-        Associado associado = validaAssociadoExistente(id);
+        Associado associado = buscaAssociadoExistente(id);
         mapper.updateAssociado(associado,dto);
         repository.save(associado);
         return mapper.toResponse(associado);
@@ -51,11 +51,11 @@ public class AssociadoServiceImpl implements AssociadoService {
 
     @Override
     public void apagaAssociado(Long id) {
-        Associado associado = validaAssociadoExistente(id);
+        Associado associado = buscaAssociadoExistente(id);
         repository.delete(associado);
     }
 
-    protected Associado validaAssociadoExistente(Long id){
+    protected Associado buscaAssociadoExistente(Long id){
         Optional<Associado> associado= repository.findById(id);
         if(associado.isEmpty()){
             throw new AssociadoNaoExistenteException(id);
@@ -63,7 +63,7 @@ public class AssociadoServiceImpl implements AssociadoService {
         return associado.get();
     }
 
-    protected Associado validaAssociadoExistente(String nome){
+    protected Associado buscaAssociadoExistente(String nome){
         Optional<Associado> associado = repository.findByNome(nome.toLowerCase());
         if(associado.isEmpty()){
             throw new AssociadoJaExistenteException(nome);

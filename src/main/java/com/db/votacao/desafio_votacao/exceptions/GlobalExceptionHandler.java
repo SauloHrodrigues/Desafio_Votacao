@@ -1,5 +1,6 @@
 package com.db.votacao.desafio_votacao.exceptions;
 
+import com.db.votacao.desafio_votacao.exceptions.Voto.VotoJaRealizadoException;
 import com.db.votacao.desafio_votacao.exceptions.associados.AssociadoJaExistenteException;
 import com.db.votacao.desafio_votacao.exceptions.associados.AssociadoNaoExistenteException;
 import com.db.votacao.desafio_votacao.exceptions.pautas.PautaInexistenteException;
@@ -29,6 +30,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(PautaJaExistenteException.class)
     public ResponseEntity<Object> handlerPautaJaExistenteException(PautaJaExistenteException exception){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("Erro! ", exception.getMessage()));
+    }
+    @ExceptionHandler(VotoJaRealizadoException.class)
+    public ResponseEntity<Object> VotoJaRealizadoException(VotoJaRealizadoException exception){
         return ResponseEntity.status(HttpStatus.CONFLICT).body(new ErrorResponse("Erro! ", exception.getMessage()));
     }
 

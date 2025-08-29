@@ -1,6 +1,7 @@
 package com.db.votacao.desafio_votacao.models;
 
 import com.db.votacao.desafio_votacao.enuns.PautaStatusEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @RequiredArgsConstructor
@@ -39,10 +41,22 @@ public class Pauta {
     @Setter(value = AccessLevel.PRIVATE)
     @OneToMany(mappedBy = "pauta", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @MapKeyColumn(name = "id")
+    @JsonIgnore
     private List<Voto> votos = new ArrayList<>();
 
     public void adicionarVoto(Voto voto){
         votos.add(voto);
+    }
+
+    @Override
+    public String toString() {
+        return "Pauta{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", dataDeCadastro=" + dataDeCadastro +
+                ", totalVotos=" + (votos != null ? votos.size() : 0) +
+                '}';
     }
 
     @Override

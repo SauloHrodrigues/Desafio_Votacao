@@ -1,4 +1,4 @@
-package com.db.votacao.desafio_votacao.model;
+package com.db.votacao.desafio_votacao.models;
 
 import com.db.votacao.desafio_votacao.enuns.VotoEnum;
 import jakarta.persistence.Entity;
@@ -7,8 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -19,10 +21,23 @@ public class Voto {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "refer_associado")
+    @JoinColumn(name = "associado_id")
+    @ToString.Exclude
     private  Associado associado;
+
+    @ManyToOne
+    @JoinColumn(name = "id_da_pauta")
+    private Pauta pauta;
 
     private VotoEnum voto;
 
+    @Override
+    public String toString() {
+        return "Voto{" +
+                "id=" + id +
+                ", voto='" + voto + '\'' +
+                ", associadoId=" + (associado != null ? associado.getId() : null) +
+                '}';
+    }
 
 }
