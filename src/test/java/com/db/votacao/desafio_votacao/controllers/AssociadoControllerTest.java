@@ -50,7 +50,7 @@ class AssociadoControllerTest {
     @Test
     @DisplayName("Deve realizar o cadastro de um novo associado.")
     void deveCadastrarNovoAssociado() throws Exception {
-        AssociadoRequestDto dto = AssociadoFixture.dtoRequestFixture("maria", "111.222.333-44");
+        AssociadoRequestDto dto = AssociadoFixture.dtoRequestFixture("maria", "11122233344");
         Associado associado = AssociadoFixture.associadoFixture(dto);
         Long id = associado.getId();
         AssociadoResponseDto respostaEsperada = AssociadoFixture.responseDto(associado);
@@ -71,7 +71,7 @@ class AssociadoControllerTest {
     @Test
     @DisplayName("Deve retornar código 409, quando o asociado já estiver cadastrado")
     void deveRetornarCodigo409QuandoAssociadoJaEstiverCadastrado() throws Exception {
-        AssociadoRequestDto dto = AssociadoFixture.dtoRequestFixture("maria", "111.222.333-44");
+        AssociadoRequestDto dto = AssociadoFixture.dtoRequestFixture("maria", "11122233344");
         Associado associado = AssociadoFixture.associadoFixture(dto);
         Long id = associado.getId();
         AssociadoResponseDto respostaEsperada = AssociadoFixture.responseDto(associado);
@@ -93,9 +93,9 @@ class AssociadoControllerTest {
     @DisplayName("Deve retornar a lista com todos os associados já cadastrados")
     void retornarTodosAssociadosCadastrados() throws Exception {
 
-        Associado associado01 = AssociadoFixture.associadoFixture("Juliano", "123.456.789-0");
-        Associado associado02 = AssociadoFixture.associadoFixture("Eduardo", "234.567.980-14");
-        Associado associado03 = AssociadoFixture.associadoFixture("Maria", "345.678.912-22");
+        Associado associado01 = AssociadoFixture.associadoFixture("Juliano", "1234567890");
+        Associado associado02 = AssociadoFixture.associadoFixture("Eduardo", "23456798014");
+        Associado associado03 = AssociadoFixture.associadoFixture("Maria", "34567891222");
         List<AssociadoResponseDto> associados = new ArrayList<>();
         associados.add(AssociadoFixture.responseDto(associado01));
         associados.add(AssociadoFixture.responseDto(associado02));
@@ -118,7 +118,7 @@ class AssociadoControllerTest {
     @Test
     @DisplayName("Deve retornar código 200 um associado com determinado id, já cadastrado no banco.")
     void buscarUmAssociadoPorId() throws Exception {
-        Associado associado01 = AssociadoFixture.associadoFixture("Juliano", "123.456.789-0");
+        Associado associado01 = AssociadoFixture.associadoFixture("Juliano", "1234567890");
         Long id = associado01.getId();
         AssociadoResponseDto response = AssociadoFixture.responseDto(associado01);
 
@@ -133,7 +133,7 @@ class AssociadoControllerTest {
 @Test
     @DisplayName("Deve retornar código 404 um associado não encontrado no banco.")
     void deveRetornarNotFoundAoBuscarUmAssociadoPorIdENãoEncontrar() throws Exception {
-        Associado associado01 = AssociadoFixture.associadoFixture("Juliano", "123.456.789-0");
+        Associado associado01 = AssociadoFixture.associadoFixture("Juliano", "12345678910");
         Long id = associado01.getId();
         String mensagemEsperada = "O associado de ID: "+id+", não foi encontrado no banco.";
 
@@ -148,8 +148,8 @@ class AssociadoControllerTest {
     @Test
     @DisplayName("Deve retornar código 200 ao atualizar um associado do banco.")
     void atualizarUmAssociado() throws Exception {
-        Associado associado = AssociadoFixture.associadoFixture("jose","123.456.789.10");
-        AssociadoAtualizaDto atualizaDto = AssociadoFixture.dtoAtualizarFixture(null,"555,666,777-88");
+        Associado associado = AssociadoFixture.associadoFixture("jose","12345678910");
+        AssociadoAtualizaDto atualizaDto = AssociadoFixture.dtoAtualizarFixture(null,"55566677788");
         AssociadoResponseDto responseDto = AssociadoFixture.responseDto(associado,atualizaDto);
 
         when(service.atualizaDadosAssociado(associado.getId(),atualizaDto)).thenReturn(responseDto);
