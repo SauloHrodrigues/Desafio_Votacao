@@ -1,14 +1,9 @@
 package com.db.votacao.desafio_votacao.service;
 
-import com.db.votacao.desafio_votacao.auxiliares.fixtures.AssociadoFixture;
 import com.db.votacao.desafio_votacao.auxiliares.fixtures.PautaFixture;
-import com.db.votacao.desafio_votacao.dtos.associado.AssociadoRequestDto;
-import com.db.votacao.desafio_votacao.dtos.associado.AssociadoResponseDto;
 import com.db.votacao.desafio_votacao.dtos.pauta.PautaRequesteDto;
 import com.db.votacao.desafio_votacao.dtos.pauta.PautaResponseDto;
-import com.db.votacao.desafio_votacao.exceptions.associados.AssociadoJaExistenteException;
 import com.db.votacao.desafio_votacao.exceptions.pautas.PautaJaExistenteException;
-import com.db.votacao.desafio_votacao.models.Associado;
 import com.db.votacao.desafio_votacao.models.Pauta;
 import com.db.votacao.desafio_votacao.repositorys.PautaRepository;
 import com.db.votacao.desafio_votacao.services.implementacoes.PautaServiceImpl;
@@ -25,7 +20,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
