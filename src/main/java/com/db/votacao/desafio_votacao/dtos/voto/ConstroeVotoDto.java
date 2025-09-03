@@ -8,5 +8,4 @@ public record ConstroeVotoDto(
         Associado associado,
         Pauta pauta,
         VotoEnum voto
-) {
-}
+) {}

@@ -19,5 +19,4 @@ public record PautaAtualizarRequestDto(
         @Size(min = 2, message = "O nome deve ter pelo menos 2 caracteres")
         String descricao
 
-) {
-}
+) {}

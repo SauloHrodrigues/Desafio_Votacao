@@ -20,5 +20,4 @@ public record PautaRequesteDto(
         @NotBlank(message = "A derscrição da pauta é campo de preenchimento obrigatório.")
         @Size(min = 2, message = "O nome deve ter pelo menos 2 caracteres")
         String descricao
-) {
-}
+) {}

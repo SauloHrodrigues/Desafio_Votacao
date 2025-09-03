@@ -12,5 +12,4 @@ public record AssociadoAtualizaDto(
         @Schema(description = "Documento do associado", example = "99977733366")
         @Size(max = 11, message = "O nome deve no máximo 11 caracteres")
         String documento
-) {
-}
+) {}

@@ -17,8 +17,10 @@ public class OpenApiConfig {
                         .title("Votação API")
                         .version("v1")
                         .description(
-                                "No cooperativismo, cada associado possui um voto e as decisões são tomadas em assembleias, por votação. Imagine que você \n" +
-                                        "deve criar uma solução para dispositivos móveis para gerenciar e participar dessas sessões de votação. "
+                                "No cooperativismo, cada associado possui um voto e as" +
+                                        " decisões são tomadas em assembleias, por votação. " +
+                                        "Imagine que você \ndeve criar uma solução para dispositivos" +
+                                        " móveis para gerenciar e participar dessas sessões de votação. "
                         )
                         .contact(new Contact()
                                 .name("Saulo Henrique Rodrigues")

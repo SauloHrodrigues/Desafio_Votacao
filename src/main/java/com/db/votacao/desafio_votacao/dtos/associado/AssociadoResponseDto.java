@@ -13,5 +13,4 @@ public record AssociadoResponseDto(
 
         @Schema(description = "Documento do associado", example = "99977733366")
         String documento
-) {
-}
+) {}

@@ -16,5 +16,4 @@ public record AssociadoRequestDto(
         @NotBlank(message = "O documento do associado é campo de preenchimento obrigatório.")
         @Size(max = 11, message = "O nome deve no máximo 11 caracteres")
         String documento
-) {
-}
+) {}

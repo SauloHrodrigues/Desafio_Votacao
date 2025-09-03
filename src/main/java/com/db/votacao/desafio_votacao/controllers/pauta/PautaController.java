@@ -44,7 +44,6 @@ public class PautaController implements PautaControllerSwager {
         var resposta = service.buscarPautaPorId(id);
         return ResponseEntity.ok(resposta);
     }
-
     @PatchMapping("/{id}")
     public ResponseEntity<PautaResponseDto> atualizarUmaPauta(@PathVariable Long id,@Valid @RequestBody PautaAtualizarRequestDto atualizacoesDto) {
         var associadoAtualizado = service.atualizarPautaPorId(id,atualizacoesDto);

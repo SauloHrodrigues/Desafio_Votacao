@@ -47,6 +47,8 @@ public class Pauta {
 
     @Builder.Default
     private LocalDateTime dataDeCadastro = LocalDateTime.now();
+    private LocalDateTime aberturaParaVotacao;
+    private LocalDateTime fechamentoDaVotacao;
 
     @Setter(AccessLevel.PRIVATE)
     @Builder.Default
@@ -55,9 +57,18 @@ public class Pauta {
     @JsonIgnore
     private List<Voto> votos = new ArrayList<>();
 
+    private PautaStatusEnum status = PautaStatusEnum.FECHADA;
+
     public void adicionarVoto(Voto voto) {
         votos.add(voto);
     }
+
+    public void iniciarVotacao(long duracaoEmMinutos) {
+        this.aberturaParaVotacao = LocalDateTime.now();
+        this.status = PautaStatusEnum.ABERTA;
+        this.fechamentoDaVotacao = this.aberturaParaVotacao.plusMinutes(duracaoEmMinutos);
+    }
+
 
     @Override
     public String toString() {
